@@ -45,6 +45,10 @@ const App = () => {
       const res = await fetch(
         `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchQuery}`
       );
+      const res1 = await fetch(
+        `https://forkify-api.herokuapp.com/api/v2/recipes`
+      );
+      console.log("mydata",res1)
       if (!res.ok) throw new Error("Something went wrong!");
       const data = await res.json();
       if (data.results === 0) throw new Error("No recipe found!");
@@ -80,6 +84,7 @@ const App = () => {
   //Showing Local storage data
   useEffect(() => {
     localStorage.setItem("recipes", JSON.stringify(savedItems));
+    getData('chicken')
   }, [savedItems]);
 
   return (
